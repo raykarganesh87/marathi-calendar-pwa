@@ -1,0 +1,94 @@
+@font-face { font-family: 'NSD'; src: url('fonts/NotoSansDevanagari-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'NSD'; src: url('fonts/NotoSansDevanagari-Bold.woff2') format('woff2'); font-weight: 600 700; font-display: swap; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+:root { --maroon: #7a1f1f; --gold: #ffd27a; --orange: #f2a33a; }
+html, body { margin: 0; padding: 0; }
+body { font-family: 'NSD', 'Noto Sans Devanagari', 'Nirmala UI', 'Mangal', system-ui, sans-serif; background: #e9e3dc; color: #2a1a12; -webkit-text-size-adjust: 100%; }
+
+/* ---------- app shell ---------- */
+.app-head { background: var(--maroon); color: #fff; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+.app-head img { width: 40px; height: 40px; border-radius: 9px; }
+.app-head h1 { font-size: 18px; margin: 0; line-height: 1.25; }
+.app-head small { color: var(--gold); display: block; font-weight: 400; font-size: 12px; }
+.ui { max-width: 760px; margin: 14px auto; padding: 0 12px; }
+.card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.15); margin-bottom: 12px; }
+.card h2 { font-size: 15px; margin: 0 0 10px; color: var(--maroon); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+label { font-size: 12px; color: #555; display: block; margin-bottom: 3px; font-family: system-ui, sans-serif; }
+input, select, button { font: inherit; font-family: system-ui, 'Segoe UI', sans-serif; font-size: 15px; }
+input, select { width: 100%; padding: 9px 10px; border: 1px solid #c9bdb0; border-radius: 8px; background: #fff; }
+.row { margin-bottom: 10px; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+button { border: 0; border-radius: 10px; padding: 11px 18px; cursor: pointer; font-weight: 600; }
+button.primary { background: var(--maroon); color: #fff; }
+button.accent { background: var(--orange); color: #3a1500; }
+button.ghost { background: #efe7de; color: #3a1500; }
+button:disabled { opacity: .5; cursor: default; }
+.bar { height: 8px; background: #eadfd3; border-radius: 6px; overflow: hidden; margin-top: 10px; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--orange); transition: width .15s; }
+.status { font-size: 13px; color: #555; margin-top: 6px; font-family: system-ui, sans-serif; min-height: 18px; }
+.hint { font-size: 12px; color: #6b5d50; line-height: 1.5; font-family: system-ui, sans-serif; }
+.hidden { display: none !important; }
+#stage { --s: 1; padding: 6px 0 40px; }
+.sheet { width: calc(210mm * var(--s)); height: calc(297mm * var(--s)); margin: 0 auto 12px; box-shadow: 0 2px 8px rgba(0,0,0,.3); background: #fff; overflow: hidden; }
+
+/* ---------- calendar pages (A4 portrait) ---------- */
+.pg { width: 210mm; height: 296.5mm; padding: 6mm; position: relative; overflow: hidden; background: #fff; color: #2a1a12;
+      transform: scale(var(--s)); transform-origin: 0 0; font-size: 7pt; }
+.ad { border: .35mm dashed #9a8f84; background: #faf8f5; color: #a39a90; text-align: center; font-size: 8pt; width: 198mm;
+      display: flex; align-items: center; justify-content: center; }
+.ad.bot { position: absolute; left: 6mm; bottom: 6mm; }
+.red { color: #b3121b; }
+.hdr { display: flex; justify-content: space-between; align-items: center; background: var(--maroon); color: #fff; padding: 1mm 4mm; border-radius: 2mm; }
+.hdr .m { font-size: 22pt; font-weight: 700; line-height: 1.1; }
+.hdr .y { font-size: 11pt; font-weight: 600; color: var(--gold); }
+.hdr .sub { font-size: 7.2pt; text-align: right; line-height: 1.5; }
+table.cal { width: 100%; border-collapse: collapse; table-layout: fixed; }
+table.cal th { background: var(--orange); color: #3a1500; font-size: 7.8pt; height: 6mm; padding: 0; border: .25mm solid #a15a00; }
+table.cal th.sun { background: #c72a2a; color: #fff; }
+table.cal td { border: .25mm solid #b9a58f; vertical-align: top; padding: 0; overflow: hidden; }
+.cin { padding: .8mm 1mm; overflow: hidden; }
+td.empty { background: #f4efe9; } td.hol { background: #fdeaea; } td.pur { background: #fff6cf; } td.ama { background: #e9e6ee; }
+.d1 { display: flex; justify-content: space-between; align-items: baseline; }
+.num { font-size: 17pt; font-weight: 700; line-height: 1.05; }
+.num .en { font-size: 6.5pt; font-weight: 600; color: #777; margin-left: 1mm; }
+.ts { font-size: 7pt; font-weight: 600; color: var(--maroon); text-align: right; white-space: nowrap; }
+.tn { font-size: 7.6pt; font-weight: 600; margin-top: .3mm; white-space: nowrap; overflow: hidden; }
+.nk { font-size: 6.8pt; color: #555; white-space: nowrap; overflow: hidden; }
+.ev { font-size: 6.7pt; line-height: 1.2; margin-top: .5mm; overflow: hidden; color: #999; }
+.ev .f { color: #b3121b; font-weight: 600; } .ev .v { color: #0b4f8a; }
+.moon { display: inline-block; width: 2.2mm; height: 2.2mm; border-radius: 50%; border: .3mm solid #8a6a00; vertical-align: middle; margin-right: .5mm; }
+.moon.f { background: #ffe066; } .moon.n { background: #333; border-color: #333; }
+.foot { position: absolute; left: 6mm; right: 6mm; font-size: 6.9pt; line-height: 1.35; border-top: .4mm solid var(--maroon); padding-top: .8mm; overflow: hidden; }
+.foot b { color: var(--maroon); } .foot i { font-style: normal; color: #999; margin: 0 1.2mm; }
+table.pt { width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 1.5mm; font-size: calc(7.4pt * var(--k, 1)); }
+table.pt th { background: var(--maroon); color: #fff; padding: 1mm .8mm; font-weight: 600; border: .2mm solid var(--maroon); text-align: left; font-size: 6.8pt; }
+table.pt td { border-left: .2mm solid #cdbfae; border-right: .2mm solid #cdbfae; border-top: .2mm solid #cdbfae; padding: calc(.75mm * var(--k, 1)) .8mm; vertical-align: middle; line-height: 1.2; white-space: nowrap; overflow: hidden; }
+table.pt tr.hol td { background: #fdeaea; }
+table.pt tr.fe td { border-top: none; padding: 0 .8mm .7mm 3mm; font-size: calc(6.6pt * var(--k, 1)); color: #b3121b; font-weight: 600; white-space: normal; }
+table.pt tr.last td { border-bottom: .2mm solid #cdbfae; }
+table.pt td.dt { font-weight: 700; }
+.cover .big { background: var(--maroon); color: #fff; padding: 5mm 8mm; border-radius: 3mm; margin-top: 2mm; }
+.cover .yr { font-size: 46pt; font-weight: 700; color: var(--gold); line-height: 1.05; }
+.cover h1 { font-size: 24pt; margin: 0; color: #fff; }
+.cover .l1 { font-size: 9.5pt; margin-top: 2mm; } .cover .l2 { font-size: 8.2pt; color: var(--gold); margin-top: 1mm; }
+.cover .cols { display: flex; gap: 5mm; margin-top: 3mm; } .cover .col { flex: 1; min-width: 0; }
+.cover h3 { margin: 0 0 1.5mm; color: var(--maroon); font-size: 9.5pt; border-bottom: .4mm solid var(--orange); }
+.cover table { border-collapse: collapse; width: 100%; font-size: 7pt; line-height: 1.15; }
+.cover td { padding: .3mm .8mm; border-bottom: .15mm solid #d9cdbf; vertical-align: top; }
+.cover .notes { font-size: 6.6pt; line-height: 1.4; }
+.list3 { column-count: 3; column-gap: 5mm; font-size: 7pt; margin-top: 2mm; }
+.list3 h4 { margin: 1.5mm 0 .6mm; color: var(--maroon); font-size: 8.5pt; break-after: avoid; border-bottom: .3mm solid var(--orange); }
+.list3 .i { break-inside: avoid; line-height: 1.4; }
+
+/* ---------- print: only the calendar pages ---------- */
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  html, body { background: #fff; }
+  .app-head, .ui { display: none !important; }
+  #stage { --s: 1 !important; padding: 0; }
+  .sheet { width: 210mm; height: 296.5mm; margin: 0; box-shadow: none; page-break-after: always; break-after: page; overflow: hidden; }
+  .sheet:last-child { page-break-after: auto; break-after: auto; }
+  .pg { transform: none !important; }
+}
